@@ -62,6 +62,7 @@ def message(msg, color):
     mesg = font.render(msg, True, color)
     screen.blit(mesg, [SCREEN_WIDTH / 6, SCREEN_HEIGHT / 3])
 
+
 def gameLoop():
     game_over = False
     game_close = False
@@ -79,6 +80,8 @@ def gameLoop():
     foody = round(random.randrange(0, SCREEN_HEIGHT - SNAKE_BLOCK) / 20.0) * 20.0
 
     score = 0
+    level = 1
+    snake_speed = SNAKE_SPEED
 
     while not game_over:
 
@@ -142,9 +145,11 @@ def gameLoop():
 
         our_snake(SNAKE_BLOCK, snake_List)
 
-        # Display the score
+        # Display the score and level
         score_text = font.render("Score: " + str(score), True, WHITE)
+        level_text = font.render("Level: " + str(level), True, WHITE)
         screen.blit(score_text, [50, 50])
+        screen.blit(level_text, [50, 80])
 
         pygame.display.update()
 
@@ -154,7 +159,12 @@ def gameLoop():
             Length_of_snake += 1
             score += 1
 
-        clock.tick(SNAKE_SPEED)
+            # Increase the level and snake speed every 10 points
+            if score % 10 == 0:
+                level += 1
+                snake_speed += 5
+
+        clock.tick(snake_speed)
 
     pygame.quit()
     quit()
