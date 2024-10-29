@@ -30,8 +30,13 @@ clock = pygame.time.Clock()
 font = pygame.font.SysFont(None, 50)
 
 def our_snake(snake_block, snake_list):
-    for x in snake_list:
-        pygame.draw.rect(screen, GREEN, [x[0], x[1], snake_block, snake_block])
+    for index, x in enumerate(snake_list):
+        if index == 0:
+            pygame.draw.rect(screen, GREEN, [x[0], x[1], snake_block, snake_block])
+        else:
+            # Draw a smaller rectangle for the body segments
+            pygame.draw.rect(screen, GREEN, [x[0], x[1], snake_block - 4, snake_block - 4])
+
 
 def message(msg, color):
     mesg = font.render(msg, True, color)
