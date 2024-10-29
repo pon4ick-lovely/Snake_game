@@ -85,8 +85,15 @@ def gameLoop():
                     y1_change = SNAKE_BLOCK
                     x1_change = 0
 
-        if x1 >= SCREEN_WIDTH or x1 < 0 or y1 >= SCREEN_HEIGHT or y1 < 0:
-            game_close = True
+        # Adjust snake's position when it hits the screen boundaries
+        if x1 >= SCREEN_WIDTH:
+            x1 = 0
+        elif x1 < 0:
+            x1 = SCREEN_WIDTH - SNAKE_BLOCK
+        elif y1 >= SCREEN_HEIGHT:
+            y1 = 0
+        elif y1 < 0:
+            y1 = SCREEN_HEIGHT - SNAKE_BLOCK
 
         x1 += x1_change
         y1 += y1_change
