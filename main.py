@@ -78,11 +78,16 @@ def gameLoop():
     foodx = round(random.randrange(0, SCREEN_WIDTH - SNAKE_BLOCK) / 20.0) * 20.0
     foody = round(random.randrange(0, SCREEN_HEIGHT - SNAKE_BLOCK) / 20.0) * 20.0
 
+    score = 0
+
     while not game_over:
 
         while game_close == True:
             screen.fill(BLACK)
             message("You Lost! Press Q-Quit or C-Play Again", RED)
+            # Display the score
+            score_text = font.render("Score: " + str(score), True, WHITE)
+            screen.blit(score_text, [50, 50])
             pygame.display.update()
 
             for event in pygame.event.get():
@@ -137,12 +142,17 @@ def gameLoop():
 
         our_snake(SNAKE_BLOCK, snake_List)
 
+        # Display the score
+        score_text = font.render("Score: " + str(score), True, WHITE)
+        screen.blit(score_text, [50, 50])
+
         pygame.display.update()
 
         if x1 == foodx and y1 == foody:
             foodx = round(random.randrange(0, SCREEN_WIDTH - SNAKE_BLOCK) / 20.0) * 20.0
             foody = round(random.randrange(0, SCREEN_HEIGHT - SNAKE_BLOCK) / 20.0) * 20.0
             Length_of_snake += 1
+            score += 1
 
         clock.tick(SNAKE_SPEED)
 
