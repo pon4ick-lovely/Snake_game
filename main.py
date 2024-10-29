@@ -1,7 +1,3 @@
-# CLASSES AND OBJECTS
-
-# CLASSES AND OBJECTS
-
 import pygame
 import random
 
@@ -37,7 +33,13 @@ def our_snake(snake_block, snake_list):
             # Draw the eyes of the snake
             pygame.draw.circle(screen, BLACK, [x[0] + snake_block // 4, x[1] + snake_block // 4], snake_block // 8)
             pygame.draw.circle(screen, BLACK, [x[0] + 3 * snake_block // 4, x[1] + snake_block // 4], snake_block // 8)
-        else:def our_snake(snake_block, snake_list):
+        else:
+            # Draw a smaller rectangle for the body segments
+            pygame.draw.rect(screen, GREEN, [x[0], x[1], snake_block - 4, snake_block - 4])
+            # Draw the tongue of the snake
+            pygame.draw.line(screen, BLACK, [x[0] + snake_block // 2, x[1] + snake_block], [x[0] + snake_block // 2, x[1] + 3 * snake_block // 2], snake_block // 8)
+
+def our_snake(snake_block, snake_list):
     for index, x in enumerate(snake_list):
         if index == 0:
             # Draw the head of the snake
